@@ -71,6 +71,18 @@ struct song_node * find_song(struct song_node * head, char songname[100], char s
   }
   return NULL;
 }
+
+//find and return a pointer to the first song of an artist based on artist name
+struct song_node * find_artist(struct song_node * head, char songartist[100]) {
+  struct song_node *current = head;
+  while (current) {
+    if (strcmp(current->artist, songartist) == 0)
+      return current;
+    current = current->next;
+  }
+  return NULL;
+}
+
 /*
   struct node * free_list(struct node * head) {
   struct node * nxt;
@@ -96,5 +108,9 @@ int main() {
 
   //find and return a pointer to a node based on artist and song name
   struct song_node * a = find_song(q, "Love Story", "Taylor Swift");
+  printf("Artist: %s, Song: %s\n", a->artist, a->name);
+
+  //find and return a pointer to the first song of an artist based on artist name
+  a  = find_artist(q, "Taylor Swift");
   printf("Artist: %s, Song: %s\n", a->artist, a->name);
 }
