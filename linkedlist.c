@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-//struct node {int i; struct node *next;};
-
 struct song_node {
   char name[100];
   char artist[100];
