@@ -1,44 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-struct node {int i; struct node *next;};
+//struct node {int i; struct node *next;};
 
-void print_list(struct node * head) {
+struct song_node {
+  char name[100];
+  char artist[100];
+  struct song_node *next;
+};
+
+void print_list(struct song_node * head) {
     if (head == NULL) printf("EMPTY");
     while ( head != NULL) {
-        printf("%d -> ", head->i);
+      printf("Artist: %s, Song: %s -> ", head->artist, head->name);
         head = head->next;
     }
     printf("\n");
 }
 
 
-struct node * insert_front(struct node * head, int data) {
-    struct node *new = (struct node*)malloc(sizeof(struct node));
-    new->i = data;
+struct song_node * insert_front(struct song_node * head, char songname[100], char songartist[100]) {
+    struct song_node *new = (struct song_node*)malloc(sizeof(struct song_node));
+    strcpy(new->name, songname);
+    strcpy(new->artist, songartist);
     new->next = head;
     return new;
 } 
 
-struct node * insert_order(struct node * head, int data) {
+struct song_node * insert_order(struct song_node * head, char songname[100], char songartist[100]) {
     
-    struct node *current = head;
-    if (! current) return insert_front(NULL, data); //if head is null, insert in front
-    if (data < current->i) return insert_front(head, data); //if head is greater than value, insert in front
-    
+    struct song_node *current = head;
+    if (! current) return insert_front(NULL, songname, songartist); //if head is null, insert in front
+    if (strcmp(songartist, current->artist) < 0) return insert_front(head, songname, songartist); //if head is greater than value, insert in front
+    if (strcmp(songartist, current->artist) == 0)
+      if (strcmp(songname, current->name) <= 0)
+	return insert_front(head, songname, songartist);
     while (current->next) {
-        if (current->next->i >= data) {
-            current->next = insert_front(current->next, data); //if the data has a place between two nodes
+      if (strcmp(current->next->artist, songartist) > 0) {
+	current->next = insert_front(current->next, songname, songartist); //if the data has a place between two nodes
             return head;
-        }
+      }
         current = current->next;
     }
     
-    current->next = insert_front(current->next, data);
+    current->next = insert_front(current->next, songname, songartist);
     return head;
     // if current doesn't have a next but it hasn't beeen sorted
 }
-
+/*
 struct node * free_list(struct node * head) {
     struct node * nxt;
     struct node * frst;
@@ -50,10 +60,11 @@ struct node * free_list(struct node * head) {
     frst = NULL;
     return frst;
 }
+*/
 
-/*int main() {
-    struct node * q = insert_front(NULL, 2);
-    q = insert_order(q, -2);
+int main() {
+  struct song_node * q = insert_front(NULL, "Singer A", "Song A");
+  /*q = insert_order(q, -2);
     q = insert_order(q, 8);
     q = insert_order(q, 5);
     q = insert_order(q, 3);
@@ -63,6 +74,6 @@ struct node * free_list(struct node * head) {
     q = insert_order(q, 6);
     q = insert_order(q, -54);
     q = insert_order(q, -54);
-    q = insert_order(q, 52);
-    print_list(q);
-} */
+    q = insert_order(q, 52);*/
+  print_list(q);
+}
