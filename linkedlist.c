@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+//song node
 struct song_node {
   char name[100];
   char artist[100];
   struct song_node *next;
 };
 
+//print the entire list
 void print_list(struct song_node * head) {
   if (head == NULL) printf("EMPTY");
   while ( head != NULL) {
@@ -17,7 +19,7 @@ void print_list(struct song_node * head) {
   printf("\n");
 }
 
-
+//insert node at the front
 struct song_node * insert_front(struct song_node * head, char songname[100], char songartist[100]) {
   struct song_node *new = (struct song_node*)malloc(sizeof(struct song_node));
   strcpy(new->name, songname);
@@ -26,6 +28,7 @@ struct song_node * insert_front(struct song_node * head, char songname[100], cha
   return new;
 } 
 
+//insert node in order
 struct song_node * insert_order(struct song_node * head, char songname[100], char songartist[100]) {
     
   struct song_node *current = head;
@@ -57,6 +60,17 @@ struct song_node * insert_order(struct song_node * head, char songname[100], cha
   return head;
   // if current doesn't have a next but it hasn't beeen sorted
 }
+
+//find and return a pointer to a node based on artist and song name
+struct song_node * find_song(struct song_node * head, char songname[100], char songartist[100]) {
+  struct song_node *current = head;
+  while (current) {
+    if (strcmp(current->artist, songartist) == 0 && strcmp(current->name, songname) == 0)
+      return current;
+    current = current->next;
+  }
+  return NULL;
+}
 /*
   struct node * free_list(struct node * head) {
   struct node * nxt;
@@ -79,4 +93,8 @@ int main() {
   q = insert_order(q, "All Too Well", "Taylor Swift");
   
   print_list(q);
+
+  //find and return a pointer to a node based on artist and song name
+  struct song_node * a = find_song(q, "Love Story", "Taylor Swift");
+  printf("Artist: %s, Song: %s\n", a->artist, a->name);
 }
