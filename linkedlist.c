@@ -83,6 +83,23 @@ struct song_node * find_artist(struct song_node * head, char songartist[100]) {
   return NULL;
 }
 
+//size of linked list
+int size(struct song_node * head) {
+  int i = 0;
+  struct song_node *current = head;
+  while (current) {
+    i++;
+    current = current->next;
+  }
+  return i;
+}
+
+//Return a pointer to random element in the list.
+/*struct song_node * rand_song(struct song_node * head) {
+  
+}
+*/
+
 /*
   struct node * free_list(struct node * head) {
   struct node * nxt;
@@ -105,6 +122,9 @@ int main() {
   q = insert_order(q, "All Too Well", "Taylor Swift");
   
   print_list(q);
+
+  //size of linked list
+  printf("Size: %d", size(q));
 
   //find and return a pointer to a node based on artist and song name
   struct song_node * a = find_song(q, "Love Story", "Taylor Swift");
