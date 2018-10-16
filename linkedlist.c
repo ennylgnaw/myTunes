@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 //song node
 struct song_node {
@@ -95,10 +96,16 @@ int size(struct song_node * head) {
 }
 
 //Return a pointer to random element in the list.
-/*struct song_node * rand_song(struct song_node * head) {
-  
+struct song_node * rand_song(struct song_node * head) {
+  struct song_node *current = head;
+  srand( time(NULL) );
+  int randNum = rand() % size(head);
+  while (randNum > 0) {
+    current = current->next;
+    randNum--;
+  }
+  return current;
 }
-*/
 
 /*
   struct node * free_list(struct node * head) {
@@ -124,7 +131,7 @@ int main() {
   print_list(q);
 
   //size of linked list
-  printf("Size: %d", size(q));
+  printf("Size: %d\n", size(q));
 
   //find and return a pointer to a node based on artist and song name
   struct song_node * a = find_song(q, "Love Story", "Taylor Swift");
@@ -132,5 +139,9 @@ int main() {
 
   //find and return a pointer to the first song of an artist based on artist name
   a  = find_artist(q, "Taylor Swift");
+  printf("Artist: %s, Song: %s\n", a->artist, a->name);
+
+  //Return a pointer to random element in the list.
+  a  = rand_song(q);
   printf("Artist: %s, Song: %s\n", a->artist, a->name);
 }
