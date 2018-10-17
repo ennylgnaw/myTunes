@@ -14,7 +14,7 @@ struct song_node {
 void print_list(struct song_node * head) {
   if (head == NULL) printf("EMPTY");
   while ( head != NULL) {
-    printf("Artist: %s, Song: %s -> ", head->artist, head->name);
+    printf("%s by %s -> ", head->name, head->artist);
     head = head->next;
   }
   printf("\n");
@@ -139,6 +139,7 @@ struct song_node * free_list(struct song_node * head) {
 }
 
 
+/*
 int main() {
   struct song_node * q = insert_front(NULL, "Trouble", "Taylor Swift");
   q = insert_order(q, "Single Lady", "Beyonce");
@@ -175,3 +176,4 @@ int main() {
 
   print_list(free_list(q));
 }
+*/
