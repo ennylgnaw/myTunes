@@ -3,17 +3,18 @@
 #include <string.h>
 #include "linkedlist.h"
 
-struct song_node * table[27];
+struct music_lib {struct song_node * table[27];};
 
 //add song nodes
-void addnode(struct song_node * table[27], char songname[100], char songartist[100]) {
-  struct song_node *new = (struct song_node*)malloc(sizeof(struct song_node));
-  
-  for (int i = 0, i <= 27; i++)
-    if (newsong->artist[0] == i + 97) {
-      if (table[i] == NULL)
-	table[i] = new;
-      else:
-	insert_order(table[i], 
-    }
+struct music_lib * addnode(struct music_lib * library, char songname[100], char songartist[100]) {
+  int i;
+  for (i = 0; i <= 27; i++)
+    if (library->table[i]->artist[0] == i + 97)
+      library->table[i] = insert_order(library->table[i], songname, songartist);
+  return library;
+}
+
+int main() {
+  struct music_lib * lib1 = addnode(NULL, "Love Story", "Taylor Swift");
+  printf("%s, by %s", lib1->table[19]->name, lib1->table[1]->artist);
 }
