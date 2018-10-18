@@ -9,7 +9,7 @@ struct music_lib {struct song_node * table[27];};
 struct music_lib * addnode(struct music_lib * library, char songname[100], char songartist[100]) {
   int i;
   for (i = 0; i <= 27; i++)
-    if (library->table[i]->artist[0] == i + 97)
+    if (library->table[i]->artist[0] == i + "a")
       library->table[i] = insert_order(library->table[i], songname, songartist);
   return library;
 }
