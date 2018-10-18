@@ -106,7 +106,8 @@ int main() {
 
   printf("Testing size [HELPER FUNCTION]...\n");
   printf("Size of the list: %d\n", size(q));
-  printf("Size of the list when a random song has been removed: %d\n", size( remove_song(q, rand_song(q)->name, rand_song(q)->artist)));
+  q = remove_song(q, rand_song(q)->name, rand_song(q)->artist);
+  printf("Size of the list when a random song has been removed: %d\n", size(q));
   printf("Size of the list when freed: %d\n", size(free_list(q)));
   
   printf("---------------\n\n");  
