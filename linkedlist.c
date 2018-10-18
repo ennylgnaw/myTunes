@@ -98,7 +98,6 @@ int size(struct song_node * head) {
 //Return a pointer to random element in the list.
 struct song_node * rand_song(struct song_node * head) {
   struct song_node *current = head;
-  srand( time(NULL) );
   int randNum = rand() % size(head);
   while (randNum > 0) {
     current = current->next;
@@ -135,45 +134,5 @@ struct song_node * free_list(struct song_node * head) {
     free(head);
     head = nextNode;
   }
-  return head;
+  return NULL;
 }
-
-
-/*
-int main() {
-  struct song_node * q = insert_front(NULL, "Trouble", "Taylor Swift");
-  q = insert_order(q, "Single Lady", "Beyonce");
-  q = insert_order(q, "Love Story", "Taylor Swift");
-  q = insert_order(q, "Young Forever", "Taylor Swift");
-  q = insert_order(q, "All Too Well", "Taylor Swift");
-  
-  print_list(q);
-
-  //size of linked list
-  printf("Size: %d\n", size(q));
-
-  //find and return a pointer to a node based on artist and song name
-  struct song_node * a = find_song(q, "Love Story", "Taylor Swift");
-  printf("Artist: %s, Song: %s\n", a->artist, a->name);
-
-  //find and return a pointer to the first song of an artist based on artist name
-  a  = find_artist(q, "Taylor Swift");
-  printf("Artist: %s, Song: %s\n", a->artist, a->name);
-
-  //Return a pointer to random element in the list.
-  a  = rand_song(q);
-  printf("Artist: %s, Song: %s\n", a->artist, a->name);
-
-  //remove a single specified node from the list
-  q = remove_song(q, "Love Story", "Taylor Swift");
-  print_list(q);
-
-  q = remove_song(q, "Young Forever", "Taylor Swift");
-  print_list(q);
-
-  q = remove_song(q, "Single Lady", "Beyonce");
-  print_list(q);
-
-  print_list(free_list(q));
-}
-*/
