@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "linkedlist.h"
+#include "library.h"
 
 
 // because I got tired of typing the same two lines every I tried to test the finding functions.
@@ -112,4 +113,83 @@ int main() {
   
   printf("---------------\n\n");  
 
+
+  //testing library
+  printf("---------------\nTESTING LIBRARY\n---------------\n\n");
+  addnode("blood, sweat, and tears", "bts");
+  addnode("fake love", "bts");
+  addnode("tomorrow", "bts");
+  addnode("love story", "taylor swift");
+  addnode("you belong to me", "taylor swift");
+  addnode("our song", "taylor swift");
+  addnode("counting stars", "onerepublic");
+  addnode("black horse", "katy perry");
+  addnode("bon appetit", "katy perry");
+  addnode("off to the races", "lana del rey");
+  addnode("summertime sadness", "lana del rey");
+  addnode("what makes you beautiful", "one direction");
+  addnode("24k magic", "bruno mars");
+  addnode("animals", "maroon 5");
+  addnode("chandelier", "sia");
+  addnode("payphone", "drake");
+  addnode("new rules", "dua lipa");
+  addnode("despacito", "justin bieber");
+
+  //testing print_library
+
+  printf("Testing addnode and print_library...\n\n");
+  print_library();
+
+  printf("---------------\n\n");
+
+  printf("Testing artist_search...\n\n");
+  artist_search("taylor swift");
+  artist_search("bts");
+  artist_search("bruno mars");
+  artist_search("onerepublic");
+
+  printf("---------------\n\n");
+
+  printf("Testing print_letter...\n\n");
+  print_letter('a');
+  print_letter('b');
+  print_letter('k');
+  print_letter('t');
+  print_letter('l');
+  print_letter('o');
+
+  printf("---------------\n\n");
+
+  printf("Testing print_artist_s (print all songs by an artist)...\n\n");
+  print_artist_s("bts");
+  print_artist_s("taylor swift");
+  print_artist_s("katy perry");
+  print_artist_s("onerepublic");
+  print_artist_s("bruno mars");
+  print_artist_s("lana del rey");
+
+  printf("---------------\n\n");
+
+  printf("Testing shuffle...\n\n");
+  shuffle();
+  shuffle();
+  shuffle();
+
+  printf("---------------\n\n");
+
+  printf("Testing delete_song...\n\n");
+  printf("Before deletion...\n\n");
+  print_library();
+  printf("\n\nAfter deleting songs from dua lipa, bruno mars, maroon 5, and justin bieber...\n\n");
+  delete_song("new rules", "dua lipa");
+  delete_song("24k magic", "bruno mars");
+  delete_song("animals", "maroon 5");
+  delete_song("despacito", "justin bieber");
+  print_library();
+
+  printf("---------------\n\n");
+
+  printf("Testing clear_lib...\n\n");
+  clear_lib();
+  print_library();
 }
