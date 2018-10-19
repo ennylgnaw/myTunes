@@ -192,4 +192,8 @@ int main() {
   printf("Testing clear_lib...\n\n");
   clear_lib();
   print_library();
+  
+  
+  printf("---------------\n");
+
 }
